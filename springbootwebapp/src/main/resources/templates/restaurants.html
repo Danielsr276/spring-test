@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Teste DbServer</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(restaurants)}">
+        <h2>Restaurant List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Number Of votes</th>
+                <th>Professionals associated</th>
+                <th>Vote</th>
+            </tr>
+            <tr th:each="restaurant : ${restaurants}">
+                <td th:text="${restaurant.name}"/>
+                <td th:text="${restaurant.numberVotes}"/>
+                <td>
+                    <label class="label-container" th:each="professional : ${restaurant.professionalList}" th:text="${professional.name}"/>
+                </td>
+                <td><a th:href="${'/restaurant/edit/' + restaurant.restId}">Vote</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
