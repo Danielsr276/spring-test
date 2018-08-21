@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Restaurant {
+@Table(name = "restaurant")
+public class Restaurant  extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer restId;

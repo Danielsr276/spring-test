@@ -1,12 +1,17 @@
 package com.daniel.ribeiro.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
-public class Professional {
+@Table(name = "professional")
+public class Professional extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Version
     private Integer version;
@@ -15,8 +20,10 @@ public class Professional {
     private String name;
     private String identification;
 
-    @ManyToOne
-    @JoinColumn(name="restId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "restId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Restaurant restaurant;
 
     public Integer getVersion() {
@@ -27,11 +34,11 @@ public class Professional {
         this.version = version;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
