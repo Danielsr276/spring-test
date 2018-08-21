@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Professional extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Version
     private Integer version;
@@ -20,7 +20,7 @@ public class Professional extends Audit {
     private String name;
     private String identification;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restId")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
@@ -34,11 +34,11 @@ public class Professional extends Audit {
         this.version = version;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

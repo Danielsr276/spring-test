@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -40,6 +41,8 @@ public class RestaurantRepositoryTest {
         restaurant.setRestaurantId(1000);
         restaurant.setName("Restaurante teste");
         restaurant.setNumberVotes(0);
+        restaurant.setCreatedAt(new Date());
+        restaurant.setUpdatedAt(new Date());
 
         //save , verify has ID value after save
         assertNull(restaurant.getRestId()); //null before save
